@@ -1,5 +1,5 @@
 # golang-service-template
-Basic golang api with MySql connection and unit tests
+Basic golang api with MySql connection and tests
 
 # this provide to create a docker container with mysql 8.0.23
 docker run --name TestDB \
