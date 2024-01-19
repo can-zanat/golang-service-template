@@ -2,7 +2,7 @@
 Basic golang api with MySql connection and unit tests
 
 docker run --name TestDB \
--e MYSQL_ROOT_USER=admin \
+-e MYSQL_ROOT_USER=root \
 -e MYSQL_ROOT_PASSWORD=12345 \
 -e MYSQL_DATABASE=TestDB \
 -p 3306:3306 \

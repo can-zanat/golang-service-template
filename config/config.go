@@ -15,7 +15,7 @@ func New() (*Config, error) {
 			Host:     "127.0.0.1",
 			Port:     port,
 			Database: "TestDB",
-			UserName: "admin",
+			UserName: "root",
 			Password: "12345",
 		}}
 

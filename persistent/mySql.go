@@ -11,22 +11,22 @@ import (
 const driveName = "mysql"
 
 type Store interface {
-	GetUsers() (*model.User, error)
+	GetUsers() (model.User, error)
 }
 
 type Mysql struct {
 	DB *sql.DB
 }
 
-func NewMysqlStore(config config.Mysql) *Mysql {
+func NewMysqlStore(c config.Mysql) *Mysql {
 	db, err := sql.Open(driveName,
 		fmt.Sprintf(
 			"%s:%s@tcp(%s:%d)/%s?parseTime=true",
-			config.UserName,
-			config.Password,
-			config.Host,
-			config.Port,
-			config.Database,
+			c.UserName,
+			c.Password,
+			c.Host,
+			c.Port,
+			c.Database,
 		),
 	)
 
@@ -41,13 +41,10 @@ func NewMysqlStore(config config.Mysql) *Mysql {
 	return &Mysql{DB: db}
 }
 
-func (m *Mysql) GetUsers() (*model.User, error) {
-	var user *model.User
+func (m *Mysql) GetUsers() (model.User, error) {
+	var user model.User
 
-	query := `select 
-    		id, user_name, full_name, email
-		from TestDB
-		where user_name = ? and pass = ?`
+	query := `select * from TestDB`
 
 	err := m.DB.
 		QueryRow(query).
@@ -59,7 +56,7 @@ func (m *Mysql) GetUsers() (*model.User, error) {
 		)
 
 	if err != nil {
-		return nil, err
+		return model.User{}, err
 	}
 
 	return user, nil

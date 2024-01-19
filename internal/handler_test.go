@@ -5,9 +5,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gofiber/fiber/v2"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func TestHandler_GetUsers(t *testing.T) {

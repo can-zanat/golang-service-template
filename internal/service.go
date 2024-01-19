@@ -3,8 +3,9 @@ package internal
 import (
 	"main/model"
 
-	"github.com/gofiber/fiber/v2"
 	store "main/persistent"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 type Service struct {
@@ -12,17 +13,18 @@ type Service struct {
 }
 
 type Store interface {
-	GetUsers() (*model.User, error)
+	GetUsers() (model.User, error)
 }
 
-func NewService(store Store) *Service {
-	return &Service{store: store}
+func NewService(s Store) *Service {
+	return &Service{store: s}
 }
 
-func (s *Service) GetUsers() (*model.User, error) {
+func (s *Service) GetUsers() (model.User, error) {
 	user, err := s.store.GetUsers()
+
 	if err != nil {
-		return nil, fiber.NewError(fiber.StatusInternalServerError, "Internal Server Error")
+		return model.User{}, fiber.NewError(fiber.StatusInternalServerError, "Internal Server Error")
 	}
 
 	return user, nil

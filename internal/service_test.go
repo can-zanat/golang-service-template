@@ -4,9 +4,10 @@ import (
 	"main/model"
 	"testing"
 
-	"github.com/gofiber/fiber/v2"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 var testUser = &model.User{

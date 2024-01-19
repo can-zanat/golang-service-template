@@ -11,7 +11,7 @@ type Handler struct {
 }
 
 type actions interface {
-	GetUsers() (*model.User, error)
+	GetUsers() (model.User, error)
 }
 
 func NewHandler(service actions) *Handler {
@@ -24,11 +24,12 @@ func (h *Handler) RegisterRoutes(app *fiber.App) {
 
 func (h *Handler) GetUsers(ctx *fiber.Ctx) error {
 	user, err := h.service.GetUsers()
+
 	if err != nil {
 		return fiber.NewError(fiber.StatusInternalServerError, "Internal Server Error")
 	}
 
-	if user == nil {
+	if user == (model.User{}) {
 		return fiber.NewError(fiber.StatusNotFound, "User Not Found")
 	}
 

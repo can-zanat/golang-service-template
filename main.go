@@ -26,9 +26,9 @@ func run() error {
 		return err
 	}
 
-	logger := logger.NewWithLogLevel("info")
+	loggerInfoLevel := logger.NewWithLogLevel("info")
 	defer func() {
-		err = logger.Sync()
+		err = loggerInfoLevel.Sync()
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -38,7 +38,7 @@ func run() error {
 	service := internal.NewService(repository)
 	handler := internal.NewHandler(service)
 
-	New(serverPort, handler, logger).Run()
+	New(serverPort, handler, loggerInfoLevel).Run()
 
 	return nil
 }
