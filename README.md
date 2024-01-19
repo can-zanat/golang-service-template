@@ -12,7 +12,7 @@ docker run --name TestDB \
 --character-set-server=utf8mb4 \
 --collation-server=utf8mb4_general_ci
 
-# this provide to create a docker container with mysql 5.7
+# this provide to create a table in mysql
 CREATE TABLE TestDB (
 id INT NOT NULL AUTO_INCREMENT,
 user_name VARCHAR(255) NOT NULL,
