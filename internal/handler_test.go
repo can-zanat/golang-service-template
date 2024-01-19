@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"main/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -44,7 +45,7 @@ func TestHandler_GetUsers(t *testing.T) {
 		mockService.
 			EXPECT().
 			GetUsers().
-			Return(nil, fiber.NewError(fiber.StatusInternalServerError, "Internal Server Error")).
+			Return(model.User{}, fiber.NewError(fiber.StatusInternalServerError, "Internal Server Error")).
 			Times(1)
 
 		handler := NewHandler(mockService)
@@ -67,7 +68,7 @@ func TestHandler_GetUsers(t *testing.T) {
 		mockService.
 			EXPECT().
 			GetUsers().
-			Return(nil, nil).
+			Return(model.User{}, nil).
 			Times(1)
 
 		handler := NewHandler(mockService)

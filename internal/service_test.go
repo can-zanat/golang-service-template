@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-var testUser = &model.User{
+var testUser = model.User{
 	ID:       12345678,
 	Username: "Coniboy",
 	FullName: "Muharrem Can Zanat",
@@ -46,7 +46,7 @@ func TestService_GetUsers(t *testing.T) {
 		mockRepository.
 			EXPECT().
 			GetUsers().
-			Return(nil, expectedError).
+			Return(model.User{}, expectedError).
 			Times(1)
 
 		service := NewService(mockRepository)
